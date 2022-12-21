@@ -9,27 +9,32 @@ function getRandomInt(max) {
 
 function generatePrompt(animal) {
   const typeœuvres = ['sculpture', 'photographie', 'peinture', 'performance', 'instalation']
-  const description = ['décrit moi ses aspects politiques et sociaux', '', '', '']
+  const description = ['et décrit moi ses aspects politiques et sociaux', '', '', '']
   const langue = "(réponds moi en français)"
   const capitalizedAnimal =
     animal[0].toUpperCase() + animal.slice(1).toLowerCase();
 
-  return `Crée .... ${typeœuvres[getRandomInt(typeœuvres.length)]} et  ${description[getRandomInt(description.length)]} ..... ${langue[getRandomInt(langue.length)]} ...... ${capitalizedAnimal}`;
+  return `Cree une ${typeœuvres[getRandomInt(typeœuvres.length - 1)]} ${description[getRandomInt(description.length - 1)]} ${langue[getRandomInt(langue.length - 1)]} ${capitalizedAnimal}`;
 
 }
+
 
 export default function Home() {
   const [animalInput, setAnimalInput] = useState("");
   const [result, setResult] = useState();
+  const [prompt, setPrompt] = useState();
+
 
   async function onSubmit(event) {
     event.preventDefault();
+    const new_prompt = generatePrompt(animalInput)
+    setPrompt(new_prompt);
     const response = await fetch("/api/generate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ animal: animalInput }),
+      body: JSON.stringify({ prompt: new_prompt }),
     });
     const data = await response.json();
     setResult(data.result);
@@ -55,6 +60,7 @@ export default function Home() {
           />
           <input type="submit" value="Generate names" />
         </form>
+        {prompt && <div className={styles.result}>{prompt}</div>}
         <div className={styles.result}>{result}</div>
       </main>
     </div>
