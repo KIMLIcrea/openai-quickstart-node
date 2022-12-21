@@ -22,13 +22,17 @@ export default function Home() {
   const [animalInput, setAnimalInput] = useState("");
   const [result, setResult] = useState();
 
+  const configuration = new Configuration({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+  console.log(process.env);
+  console.log(process.env.OPENAI_API_KEY);
+  const openai = new OpenAIApi(configuration);
+  console.log(configuration)
+
   async function onSubmit(event) {
     event.preventDefault();
-    const configuration = new Configuration({
-      apiKey: process.env.OPENAI_API_KEY,
-    });
-    const openai = new OpenAIApi(configuration);
-    
+
     const completion = await openai.createCompletion({
       model: "text-davinci-002",
       prompt: generatePrompt(animalInput),
