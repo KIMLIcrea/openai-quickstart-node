@@ -24,12 +24,12 @@ export default function Home() {
     <div>
       <Head>
         <title>OpenAI Quickstart</title>
-        <link rel="icon" href="/dog.png" />
+        <link rel="icon" href="https://benoit-barbagli.com/wp-content/uploads/2022/08/BenoitB_3_bodies_entwined_hugging_each_other_tight_filled_with__0c73b8c6-49db-4b65-953a-2c2acfb83cf8-550x550.jpg" />
       </Head>
 
       <main className={styles.main}>
-        <img src="/dog.png" className={styles.icon} />
-        <h3>Name my pet</h3>
+        <img src="https://benoit-barbagli.com/wp-content/uploads/2022/08/BenoitB_3_bodies_entwined_hugging_each_other_tight_filled_with__0c73b8c6-49db-4b65-953a-2c2acfb83cf8-550x550.jpg" className={styles.icon} />
+        <h3>ecrit un mot</h3>
         <form onSubmit={onSubmit}>
           <input
             type="text"
