@@ -31,7 +31,7 @@ export default function Home() {
     
     const completion = await openai.createCompletion({
       model: "text-davinci-002",
-      prompt: generatePrompt(req.body.animal),
+      prompt: generatePrompt(animalInput),
       temperature: 0.6,
     });
     // const response = await fetch("/api/generate", {
@@ -59,8 +59,7 @@ export default function Home() {
         <form onSubmit={onSubmit}>
           <input
             type="text"
-            name="animal"
-            placeholder="Enter an animal"
+            placeholder="Ecrit un mot clef ou une expression "
             value={animalInput}
             onChange={(e) => setAnimalInput(e.target.value)}
           />
